@@ -4,73 +4,100 @@ package edu.eci.pdsw.model;
  * Employee class
  */
 public class Employee {
-	/** The person identifier. */
-	private int personId;
-	/** The employee salary. */
-	private long salary;
-	/** The employee social security type. */
-	private SocialSecurityType socialSecurityType;
 
-	/**
-	 * Default class constructor
-	 */
-	public Employee() {
-		super();
-	}
+    /**
+     * The person identifier.
+     */
+    private int personId;
+    /**
+     * The employee name.
+     */
+    private String name;
+    /**
+     * The employee salary.
+     */
+    private long salary;
+    /**
+     * The employee social security type.
+     */
+    private SocialSecurityType socialSecurityType;
 
-	/**
-	 * Constructors using fields,
-	 *
-	 * @param personId the person id
-	 * @param salary the salary
-	 * @param socialSecurityType the social security type
-	 */
-	public Employee(int personId, long salary, SocialSecurityType socialSecurityType) {
-		this.personId = personId;
-		this.salary = salary;
-		this.socialSecurityType = socialSecurityType;
-	}
+    /**
+     * Default class constructor
+     */
+    public Employee() {
+        super();
+    }
 
-	/**
-	 * @return the personId
-	 */
-	public int getPersonId() {
-		return personId;
-	}
+    /**
+     * Constructors using fields,
+     *
+     * @param personId the person id
+     * @param name the person name
+     * @param salary the salary
+     * @param socialSecurityType the social security type
+     */
+    public Employee(int personId, String name, long salary, SocialSecurityType socialSecurityType) {
+        this.personId = personId;
+        this.name = name;
+        this.salary = salary;
+        this.socialSecurityType = socialSecurityType;
+    }
 
-	/**
-	 * @return the salary
-	 */
-	public long getSalary() {
-		return salary;
-	}
+    /**
+     * @return the personId
+     */
+    public int getPersonId() {
+        return personId;
+    }
 
-	/**
-	 * @return the socialSecurityType
-	 */
-	public SocialSecurityType getSocialSecurityType() {
-		return socialSecurityType;
-	}
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * @param personId the personId to set
-	 */
-	public void setPersonId(int personId) {
-		this.personId = personId;
-	}
+    /**
+     * @return the salary
+     */
+    public long getSalary() {
+        return salary;
+    }
 
-	/**
-	 * @param salary the salary to set
-	 */
-	public void setSalary(long salary) {
-		this.salary = salary;
-	}
+    /**
+     * @return the socialSecurityType
+     */
+    public SocialSecurityType getSocialSecurityType() {
+        return socialSecurityType;
+    }
 
-	/**
-	 * @param socialSecurityType the socialSecurityType to set
-	 */
-	public void setSocialSecurityType(SocialSecurityType socialSecurityType) {
-		this.socialSecurityType = socialSecurityType;
-	}
+    /**
+     * @param personId the personId to set
+     */
+    public void setPersonId(int personId) {
+        this.personId = personId;
+    }
+    
+    /**
+     * @param name the personId to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @param salary the salary to set
+     */
+    public void setSalary(long salary) {
+        this.salary = salary;
+    }
+
+    /**
+     * @param socialSecurityType the socialSecurityType to set
+     */
+    public void setSocialSecurityType(SocialSecurityType socialSecurityType) {
+        this.socialSecurityType = socialSecurityType;
+    }
 
 }

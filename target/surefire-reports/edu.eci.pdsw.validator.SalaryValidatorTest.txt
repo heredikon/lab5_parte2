@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: edu.eci.pdsw.validator.SalaryValidatorTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.025 sec <<< FAILURE! - in edu.eci.pdsw.validator.SalaryValidatorTest
+validateTest(edu.eci.pdsw.validator.SalaryValidatorTest)  Time elapsed: 0.004 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at edu.eci.pdsw.validator.SalaryValidator.validate(SalaryValidator.java:22)
+	at edu.eci.pdsw.validator.SalaryValidatorTest.validateTest(SalaryValidatorTest.java:24)
+

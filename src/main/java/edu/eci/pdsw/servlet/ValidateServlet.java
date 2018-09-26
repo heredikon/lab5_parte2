@@ -14,7 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.eci.pdsw.validator.EmployeeValidator;
 import edu.eci.pdsw.validator.ErrorType;
+import edu.eci.pdsw.model.Employee;
+import edu.eci.pdsw.model.SocialSecurityType;
+import edu.eci.pdsw.validator.IdValidator;
+import edu.eci.pdsw.validator.NameValidator;
 import edu.eci.pdsw.validator.SalaryValidator;
+import edu.eci.pdsw.validator.SocialSecurityValidator;
 
 /**
  * Servlet class for employee validation
@@ -30,10 +35,17 @@ public class ValidateServlet extends HttpServlet {
 	/**
 	 * The employee validator to use
 	 */
-	private EmployeeValidator validator;
+	private EmployeeValidator idValidator;
+        private EmployeeValidator nameValidator;
+        private EmployeeValidator salaryValidator;
+        private EmployeeValidator socSecValidator;
+        
 
 	public ValidateServlet() {
-		this.validator = new SalaryValidator();
+                this.idValidator = new IdValidator();
+                this.nameValidator = new NameValidator();
+		this.salaryValidator = new SalaryValidator();
+                this.socSecValidator = new SocialSecurityValidator();
 	}
 
 	/**
@@ -44,8 +56,16 @@ public class ValidateServlet extends HttpServlet {
 		Writer responseWriter = resp.getWriter();
 
 		// TODO Add the corresponding Content Type, Status, and Response
-		resp.setContentType("");
-		resp.setStatus(0);
+                //Employee empleado = new Employee();
+                
+                
+                //Optional<String> optName = Optional.ofNullable(req.getParameter("name"));
+                //String name = optName.isPresent() && !optName.get().isEmpty() ? optName.get() : "";
+                
+                
+                
+		resp.setContentType("text/html");
+		resp.setStatus(resp.SC_ACCEPTED);
 		responseWriter.write(readFile("form.html"));
 		responseWriter.flush();
 	}
@@ -58,11 +78,23 @@ public class ValidateServlet extends HttpServlet {
 		Writer responseWriter = resp.getWriter();
 
 		// TODO Create and validate employee
-		Optional<ErrorType> response = validator.validate(null);
+                Employee empleado = new Employee(Integer.parseInt(req.getParameter("personID")),req.getParameter("name"), Integer.parseInt(req.getParameter("salary")), SocialSecurityType.valueOf(req.getParameter("SocialSecurity")));                
+                
+                
+                Optional<ErrorType> response = idValidator.validate(empleado);
+                if (!response.isPresent()){
+                    response = nameValidator.validate(empleado);
+                    if(!response.isPresent()){
+                        response = salaryValidator.validate(empleado);
+                        if (!response.isPresent()){
+                            response = socSecValidator.validate(empleado);
+                        }
+                    }
+                }
 
 		// TODO Add the Content Type, Status, and Response according to validation response
-		resp.setContentType("");
-		resp.setStatus(0);
+		resp.setContentType("text/html");
+		resp.setStatus(HttpServletResponse.SC_ACCEPTED);
 		responseWriter.write(String.format(readFile("result.html"), response.map(ErrorType::name).orElse("Success")));
 		responseWriter.flush();
 	}
